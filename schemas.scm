@@ -1,5 +1,0 @@
-(use-modules (opencog)
-          (opencog pln)
-          (opencog nlp)
-          (opencog relex2logic)
-          (opencog ghost))
