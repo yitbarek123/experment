@@ -1176,7 +1176,7 @@
           (- (+ 7 num_date)(date-week-day (current-date)))
     ))
 
-  (define timestamp (+(*(+(* 24 date_diff) (- h (date-hour (current-date)))3600))(car(gettimeofday)))) 
+  (define timestamp (+(*(+(* 24 date_diff 3600) (- h (date-hour (current-date)))3600))(car(gettimeofday)))) 
   (newline)(display "timestamp: ")
       (display timestamp)
    (newline)                                                                  
