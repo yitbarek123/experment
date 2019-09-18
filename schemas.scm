@@ -1169,12 +1169,22 @@
             [(equal? "Thursday" d) 4]
             [(equal? "Friday" d) 5] 
             [(equal? "Saturday" d) 6]
+            [(equal? "Today" d) (date-week-day(current-date))]
             [else 0]))
 
-   (define date_diff(if (> (- num_date (date-week-day (current-date))) 0)
-          (- num_date (date-week-day (current-date)))
-          (- (+ 7 num_date)(date-week-day (current-date)))
-    ))
+   (define date_diff
+        (cond
+             [(string-contains(string-capitalize (cog-value-ref time 0)) "Pm") 
+             (if (> (- num_date (date-week-day (current-date))) 0)
+                (- num_date (date-week-day (current-date)))
+                (- (+ 7 num_date)(date-week-day (current-date))))
+           ]
+            [(string-contains(string-capitalize (cog-value-ref time 0)) "Am") 
+             (if (> (-  num_date (date-week-day (current-date))) 0)
+                (- (- num_date 1) (date-week-day (current-date)))
+                (- (+ 6 num_date)(date-week-day (current-date))))
+           ]
+))
 
   (define timestamp (+(+(+(* 24 date_diff 3600) (*(-  h (date-hour (current-date)))3600))(car(gettimeofday)))10800)) 
   (newline)(display "timestamp: ")
