@@ -1155,8 +1155,8 @@
                                     (+(string->number(substring (cog-value-ref time 0) 0 1)) 12)
                             )
                             (if(string->number(substring (cog-value-ref time 0) 0 2))
-                                   (+(string->number(substring (cog-value-ref time 0) 0 2)) 12)
-                                    (+(string->number(substring (cog-value-ref time 0) 0 1)) 12)
+                                   (+(+(string->number(substring (cog-value-ref time 0) 0 2)) 12)12)
+                                    (+(+(string->number(substring (cog-value-ref time 0) 0 1)) 12)12)
                              )
              
    ))
@@ -1176,7 +1176,7 @@
           (- (+ 7 num_date)(date-week-day (current-date)))
     ))
 
-  (define timestamp (+(*(+(* 24 date_diff 3600) (- h (date-hour (current-date)))3600))(car(gettimeofday)))) 
+  (define timestamp (+(+(+(* 24 date_diff 3600) (*(-  h (date-hour (current-date)))3600))(car(gettimeofday)))10800)) 
   (newline)(display "timestamp: ")
       (display timestamp)
    (newline)                                                                  
